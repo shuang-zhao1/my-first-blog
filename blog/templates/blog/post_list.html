@@ -1,13 +1,14 @@
 {% extends 'blog/base.html' %}
-
 {% block content %}
-{% for billet in billets %}
-    <div class="billet">
-        <div align="right" class="date">
-            {{ billet.published_date }}
-        </div>
-        <h2><a href="{% url 'post_detail' pk=billet.pk %}">{{ billet.title }}</a></h2>
-        <p>{{ billet.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
-{% endblock %}
+                    {% for animal in Animals %}
+                        <div class="billet">
+                            
+                                <span class="name"><a href="{% url 'animal_detail' id_animal=animal.id_animal %}">{{ animal.id_animal }}</a></span>
+                                <span class="etat">{{ animal.etat }} </span>
+                                <span class="lieu">{{ animal.lieu }} </span>
+                            
+                        </div>
+                    {% endfor %}
+                    
+{% endblock %}         
+

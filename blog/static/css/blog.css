@@ -1,23 +1,10 @@
-h2 a {
-    color: #000000;
-    
+h1 a, h2 a {
+    color: #fcf2eb;
+    font-family: 'Lobster';
 }
-
-.h2_1{
-    color: #000000;
-    margin-left: 40px;
-}
-
-
-
-p{
-    color: #000000;
-    
-}
-
 
 .page-header {
-    background-color: #C25100;
+    background-color: #e2a6a6;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -29,18 +16,34 @@ p{
 }
 
 .content {
-    margin-left: 30px;
+    background-color: #dacfcf;
+    margin-left: 00px;
 }
 
 h1, h2, h3, h4 {
     font-family: 'Lobster', cursive;
+}
+
+
+.name {
+    
+    color: #1e83f7;
+    font-size: 16pt;
     
 }
 
-.date {
-    color: #828282;
-    position:absolute;
-    right:-300px
+.etat {
+    color: #050607e8;
+    left: 300px;
+    position: absolute;
+    font-size: 14pt;
+}
+
+.lieu {
+    color: #050607e8;
+    left: 600px;
+    position: absolute;
+    font-size: 14pt;
 }
 
 .save {
@@ -64,5 +67,4 @@ h1, h2, h3, h4 {
 
 .post h2 a, .post h2 a:visited {
     color: #000000;
-    
 }

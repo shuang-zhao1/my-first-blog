@@ -1,12 +1,38 @@
-from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
-from .models import Billet
-
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import MoveForm
+from .models import Animal, Equipement
 
 def post_list(request):
-    billets = Billet.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'billets': billets})
+    Animals = Animal.objects.all()
+    return render(request, 'blog/post_list.html', {'Animals': Animals})
 
-def post_detail(request, pk):
-    billet = get_object_or_404(Billet, pk=pk)
-    return render(request, 'blog/post_detail.html', {'billet': billet})
+
+ 
+# Create your views here.
+def animal_list(request):
+    animals = Animal.objects.filter()
+    return render(request, 'blog/post_list.html', {'animals': animals})
+ 
+def animal_detail(request, id_animal):
+    animal = get_object_or_404(Animal, id_animal=id_animal)
+    form=MoveForm()
+    lieu = animal.lieu
+    if request.method == "POST":
+        form = MoveForm(request.POST, instance=animal)
+    else:
+        form = MoveForm()
+
+    if form.is_valid():
+        ancien_lieu = get_object_or_404(Equipement, id_equip=animal.lieu.id_equip)
+        ancien_lieu.disponibilite = "libre"
+        ancien_lieu.save()
+        form.save()
+        nouveau_lieu = get_object_or_404(Equipement, id_equip=animal.lieu.id_equip)
+        nouveau_lieu.disponibilite = "occupe"
+        nouveau_lieu.save()
+        return redirect('animal_detail', id_animal=id_animal)
+    else:
+        form = MoveForm()
+        return render(request,
+                  'blog/animal_detail.html',
+                  {'animal': animal, 'lieu': lieu, 'form': form})
